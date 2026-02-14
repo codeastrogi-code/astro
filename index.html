@@ -48,6 +48,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <button class="btn btn-success btn-lg" id="purchase-btn">Simulate $500 Car Insurance Purchase</button>
 </div>
 
+    <div class="container py-5 border-top mt-5">
+    <h3>Get a Custom Quote</h3>
+    <form id="quote-form">
+        <div class="mb-3">
+            <input type="text" id="user_name" class="form-control" placeholder="Your Name" required>
+        </div>
+        <div class="mb-3">
+            <select id="insurance_type" class="form-select">
+                <option value="car">Car Insurance</option>
+                <option value="travel">Travel Insurance</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Request</button>
+    </form>
+    <div id="thank-you-msg" style="display:none;" class="alert alert-success mt-3">
+        Thank you! Your quote request has been sent.
+    </div>
+</div>
+
+<script>
+  document.getElementById('quote-form').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevents the page from refreshing
+    
+    // Simulate a successful API response
+    document.getElementById('quote-form').style.display = 'none';
+    document.getElementById('thank-you-msg').style.display = 'block';
+
+    // PUSH TO DATA LAYER
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event': 'form_submission_success',
+      'form_id': 'quote-form',
+      'insurance_category': document.getElementById('insurance_type').value
+    });
+  });
+</script>
+    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
